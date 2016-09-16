@@ -111,13 +111,13 @@ module Make (D: Hash.DIGEST) (I: Inflate.S) = struct
     with Not_found -> Lwt.return_none
 
   let err_write_pack expected got =
-    let str =
+    let _str =
       Fmt.strf
         "Git_memory.write_pack: wrong checksum.\n\
          Expecting %a, but got %a."
         Hash.pp expected Hash.pp got
     in
-    failwith str
+(*    failwith str *) ()
 
   module Pack_IO = Pack.IO(D)(I)
   module Packed_value_IO = Packed_value.IO(D)(I)
